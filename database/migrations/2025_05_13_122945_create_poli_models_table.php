@@ -11,9 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('poli_models', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
+        Schema::create('poli', function (Blueprint $table) {
+            $table->id();  // Kolom ID Poli sebagai primary key
+            $table->string('kode_poli')->unique();  // Kolom kode poli dengan indeks unik
+            $table->string('nama_poli');  // Kolom nama poli
+            $table->timestamps();  // Kolom created_at dan updated_at
         });
     }
 
@@ -22,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('poli_models');
+        Schema::dropIfExists('poli');
     }
 };
