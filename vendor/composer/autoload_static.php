@@ -313,13 +313,13 @@ class ComposerStaticInit2ff1d24aa7969aa64baa959e5a68d161
         ),
         'Spatie\\LaravelIgnition\\' => 
         array (
-            0 => __DIR__ . '/..' . '/spatie/error-solutions/legacy/laravel-ignition',
-            1 => __DIR__ . '/..' . '/spatie/laravel-ignition/src',
+            0 => __DIR__ . '/..' . '/spatie/laravel-ignition/src',
+            1 => __DIR__ . '/..' . '/spatie/error-solutions/legacy/laravel-ignition',
         ),
         'Spatie\\Ignition\\' => 
         array (
-            0 => __DIR__ . '/..' . '/spatie/error-solutions/legacy/ignition',
-            1 => __DIR__ . '/..' . '/spatie/ignition/src',
+            0 => __DIR__ . '/..' . '/spatie/ignition/src',
+            1 => __DIR__ . '/..' . '/spatie/error-solutions/legacy/ignition',
         ),
         'Spatie\\FlareClient\\' => 
         array (
@@ -355,8 +355,8 @@ class ComposerStaticInit2ff1d24aa7969aa64baa959e5a68d161
         ),
         'Psr\\Http\\Message\\' => 
         array (
-            0 => __DIR__ . '/..' . '/psr/http-message/src',
-            1 => __DIR__ . '/..' . '/psr/http-factory/src',
+            0 => __DIR__ . '/..' . '/psr/http-factory/src',
+            1 => __DIR__ . '/..' . '/psr/http-message/src',
         ),
         'Psr\\Http\\Client\\' => 
         array (
@@ -532,6 +532,8 @@ class ComposerStaticInit2ff1d24aa7969aa64baa959e5a68d161
     public static $classMap = array (
         'App\\Console\\Kernel' => __DIR__ . '/../..' . '/app/Console/Kernel.php',
         'App\\Exceptions\\Handler' => __DIR__ . '/../..' . '/app/Exceptions/Handler.php',
+        'App\\Http\\Controllers\\Auth\\ApiAuthController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/ApiAuthController.php',
+        'App\\Http\\Controllers\\Auth\\WebAuthController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/WebAuthController.php',
         'App\\Http\\Controllers\\Controller' => __DIR__ . '/../..' . '/app/Http/Controllers/Controller.php',
         'App\\Http\\Kernel' => __DIR__ . '/../..' . '/app/Http/Kernel.php',
         'App\\Http\\Middleware\\Authenticate' => __DIR__ . '/../..' . '/app/Http/Middleware/Authenticate.php',
@@ -543,7 +545,14 @@ class ComposerStaticInit2ff1d24aa7969aa64baa959e5a68d161
         'App\\Http\\Middleware\\TrustProxies' => __DIR__ . '/../..' . '/app/Http/Middleware/TrustProxies.php',
         'App\\Http\\Middleware\\ValidateSignature' => __DIR__ . '/../..' . '/app/Http/Middleware/ValidateSignature.php',
         'App\\Http\\Middleware\\VerifyCsrfToken' => __DIR__ . '/../..' . '/app/Http/Middleware/VerifyCsrfToken.php',
-        'App\\Models\\User' => __DIR__ . '/../..' . '/app/Models/User.php',
+        'App\\Models\\AntrianPoli' => __DIR__ . '/../..' . '/app/Models/AntrianPoli.php',
+        'App\\Models\\JadwalPoli' => __DIR__ . '/../..' . '/app/Models/JadwalPoli.php',
+        'App\\Models\\LogAktivitas' => __DIR__ . '/../..' . '/app/Models/LogAktivitas.php',
+        'App\\Models\\PasswordResetsModel' => __DIR__ . '/../..' . '/app/Models/PasswordResetsModel.php',
+        'App\\Models\\PendaftaranPasien' => __DIR__ . '/../..' . '/app/Models/PendaftaranPasien.php',
+        'App\\Models\\PetugasJadwalPoli' => __DIR__ . '/../..' . '/app/Models/PetugasJadwalPoli.php',
+        'App\\Models\\PoliModel' => __DIR__ . '/../..' . '/app/Models/PoliModel.php',
+        'App\\Models\\UsersModel' => __DIR__ . '/../..' . '/app/Models/UsersModel.php',
         'App\\Providers\\AppServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AppServiceProvider.php',
         'App\\Providers\\AuthServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AuthServiceProvider.php',
         'App\\Providers\\BroadcastServiceProvider' => __DIR__ . '/../..' . '/app/Providers/BroadcastServiceProvider.php',
@@ -661,6 +670,8 @@ class ComposerStaticInit2ff1d24aa7969aa64baa959e5a68d161
         'Cron\\MonthField' => __DIR__ . '/..' . '/dragonmantank/cron-expression/src/Cron/MonthField.php',
         'Database\\Factories\\UserFactory' => __DIR__ . '/../..' . '/database/factories/UserFactory.php',
         'Database\\Seeders\\DatabaseSeeder' => __DIR__ . '/../..' . '/database/seeders/DatabaseSeeder.php',
+        'Database\\Seeders\\PasswordResetsSeeder' => __DIR__ . '/../..' . '/database/seeders/PasswordResetsSeeder.php',
+        'Database\\Seeders\\UsersSeeder' => __DIR__ . '/../..' . '/database/seeders/UsersSeeder.php',
         'DateError' => __DIR__ . '/..' . '/symfony/polyfill-php83/Resources/stubs/DateError.php',
         'DateException' => __DIR__ . '/..' . '/symfony/polyfill-php83/Resources/stubs/DateException.php',
         'DateInvalidOperationException' => __DIR__ . '/..' . '/symfony/polyfill-php83/Resources/stubs/DateInvalidOperationException.php',

@@ -2,14 +2,15 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 
 class UsersModel extends Authenticatable
 {
-    use HasApiTokens, Notifiable;
-
+    use HasApiTokens, HasFactory, Notifiable;
+    protected $table = 'users';
     protected $fillable = [
         'name',
         'email',
@@ -17,17 +18,12 @@ class UsersModel extends Authenticatable
         'role',
     ];
 
-    /**
-     * Kolom-kolom yang harus disembunyikan saat data diubah ke array atau JSON.
-     */
     protected $hidden = [
         'password',
         'remember_token',
     ];
 
-    /**
-     * Tipe data yang harus di-cast.
-     */
+
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
