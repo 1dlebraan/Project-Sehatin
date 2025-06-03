@@ -1,64 +1,43 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@yield('title', 'Dashboard')</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter&display=swap" rel="stylesheet">
-    <style>
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: #E0F7FB;
-            /* biru langit */
-            margin: 0;
-            padding: 0;
-        }
-
-        header {
-            background-color: #72CAEE;
-            padding: 15px 30px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        }
-
-        .content {
-            padding: 30px;
-        }
-
-        .logout-btn {
-            background-color: #72CAEE;
-            color: white;
-            border: none;
-            padding: 8px 16px;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-
-        .logout-btn:hover {
-            background-color: rgb(250, 250, 250);
-        }
-
-        h1 {
-            margin: 0;
-        }
-    </style>
+    <title>@yield('title', 'SEHATIN Admin')</title>
+    @vite('resources/css/app.css')
 </head>
 
-<body>
-    <header>
-        <h1>@yield('title', 'Dashboard')</h1>
-        <form method="POST" action="{{ url('/logout') }}">
-            @csrf
-            <button type="submit" class="logout-btn">Logout</button>
-        </form>
-    </header>
+<body class="bg-[#e3f9ff] font-sans">
 
-    <div class="content">
+    <!-- Header -->
+    <div class="bg-[#ade0f6] flex justify-between items-center px-8 py-5 rounded-b-2xl shadow-md">
+        <div class="flex items-center gap-3">
+            <img src="{{ asset('assets/icons/logo.png') }}" alt="Logo" class="h-10">
+            <span class="text-2xl text-[#2791c9] font-bold">sehatin</span>
+        </div>
+        <div class="flex gap-4">
+            <button class="bg-white p-2 rounded-full shadow hover:scale-110 transition">
+                <img src="{{ asset('assets/icons/profile.png') }}" alt="Profile" class="h-6">
+            </button>
+            <form method="POST" action="{{ route('logout') }}">
+                @csrf
+                <button class="bg-white p-2 rounded-full shadow hover:scale-110 transition">
+                    <img src="{{ asset('assets/icons/logout.png') }}" alt="Logout" class="h-6">
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Content -->
+    <div class="py-20">
         @yield('content')
     </div>
+
+    <!-- Footer -->
+    <footer class="text-center text-[#00aaff] font-bold mt-20 py-6">
+        © SEHATIN
+    </footer>
+
 </body>
 
 </html>

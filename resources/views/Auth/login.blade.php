@@ -87,7 +87,7 @@
 <body>
 
     <div class="login-box">
-        <img src="{{ asset('images/logo2aplikasi.svg') }}" alt="Logo Rumah Sakit">
+        <img src="{{ asset('images/logoapp2.png') }}" alt="Logo Rumah Sakit" width="250px" height="100px">
         <h2>Log in</h2>
 
         @if(session('error'))
