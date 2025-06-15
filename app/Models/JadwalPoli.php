@@ -9,20 +9,24 @@ class JadwalPoli extends Model
 {
     use HasFactory;
 
-    // Nama tabel (opsional jika sesuai konvensi)
-    protected $table = 'jadwal_poli';
+    protected $table = 'jadwal_poli'; // Pastikan nama tabel benar jika tidak plural 'jadwal_polis'
 
-    // Kolom yang bisa diisi (fillable)
+    // Kolom-kolom yang boleh diisi secara massal
     protected $fillable = [
         'poli_id',
         'hari',
         'jam_buka',
         'jam_tutup',
         'kuota',
-        'status',
+        'status', // Tambahkan 'status' jika Anda juga ingin bisa mengupdate status via update method
     ];
 
-    // Relasi ke tabel poli
+    // Jika Anda menggunakan $guarded, pastikan kolom yang ingin diupdate TIDAK ada di dalamnya
+    // protected $guarded = []; // Jika kosong, semua kolom boleh diisi massal
+
+    /**
+     * Get the poli that owns the JadwalPoli.
+     */
     public function poli()
     {
         return $this->belongsTo(Poli::class);

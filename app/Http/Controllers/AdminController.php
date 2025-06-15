@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
+// use App\Http\Controllers\Controller;
 use App\Models\JadwalPoli;
 use App\Models\Poli;
 use Illuminate\Http\Request;
+use Illuminate\Validation\ValidationException;
 
 class AdminController extends Controller
 {
@@ -67,5 +68,25 @@ class AdminController extends Controller
         $jadwal->save();
 
         return redirect()->back()->with('success', 'Status berhasil diubah.');
+    }
+
+    // ✅ Method BARU untuk Menambah Poli
+    public function storePoli(Request $request)
+    {
+        try {
+            $validated = $request->validate([
+                'kode_poli' => 'required|string|max:255|unique:poli,kode_poli', // unique:table,column
+                'nama_poli' => 'required|string|max:255',
+            ]);
+
+            Poli::create($validated);
+
+            return redirect()->back()->with('success', 'Poli baru berhasil ditambahkan.');
+
+        } catch (ValidationException $e) {
+            return redirect()->back()->withErrors($e->errors())->withInput();
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', 'Terjadi kesalahan saat menambahkan poli: ' . $e->getMessage());
+        }
     }
 }
