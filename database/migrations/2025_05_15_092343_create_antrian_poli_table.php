@@ -4,29 +4,39 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
-{
+return new class extends Migration {
     /**
-     * Run the migrations.
+     * Jalankan migrasi
      */
     public function up(): void
     {
         Schema::create('antrian_poli', function (Blueprint $table) {
-            $table->id(); // ID antrian poli
-            $table->foreignId('pendaftaran_pasien_id')->constrained('pendaftaran_pasien')->onDelete('cascade');
+            $table->id(); // ID utama
+
+            // GANTI: gunakan user_id sebagai foreign key
+            // Pastikan Anda menggunakan 'iduser' jika itu nama kolom FK Anda yang sebenarnya.
+            // Konvensi Laravel adalah foreignId('user_id'), tapi jika Anda sudah pakai 'iduser' dan sudah ran,
+            // pertahankan 'iduser'.
+            $table->foreignId('iduser')->constrained('users')->onDelete('cascade');
+
             $table->foreignId('poli_id')->constrained('poli')->onDelete('cascade');
             $table->integer('nomor_antrian');
             $table->date('tanggal_antrian');
+
+            // --- PASTIKAN KOLOM-KOLOM INI ADA DI SINI ---
             $table->time('waktu_datang')->nullable();
             $table->time('waktu_dipanggil')->nullable();
-            $table->integer('waktu_tunggu')->nullable(); // dalam menit atau detik
+            $table->integer('waktu_tunggu')->nullable(); // dalam menit
+            // --- AKHIR PASTIKAN KOLOM-KOLOM INI ADA DI SINI ---
+
             $table->enum('status_antrian', ['menunggu', 'dipanggil', 'selesai', 'batal'])->default('menunggu');
-            $table->timestamps(); // created_at dan updated_at
+
+            $table->timestamps(); // created_at & updated_at
         });
     }
 
     /**
-     * Reverse the migrations.
+     * Rollback (jika dibatalkan)
      */
     public function down(): void
     {

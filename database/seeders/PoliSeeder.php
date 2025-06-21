@@ -11,14 +11,20 @@ class PoliSeeder extends Seeder
     {
         DB::table('poli')->insert([
             [
-                'kode_poli' => 'GIG002',
+                'kode_poli' => 'PL001',
                 'nama_poli' => 'Poli Gigi',
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
             [
-                'kode_poli' => 'ANA003',
+                'kode_poli' => 'PL002',
                 'nama_poli' => 'Poli Anak',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'kode_poli' => 'PL003',
+                'nama_poli' => 'Poli Umum',
                 'created_at' => now(),
                 'updated_at' => now(),
             ],

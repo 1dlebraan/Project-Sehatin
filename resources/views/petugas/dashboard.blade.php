@@ -1,14 +1,78 @@
 @extends('layouts.dashboard-layout')
 
-@section('title', 'Dashboard')
+@section('title', 'Dashboard Petugas')
 
 @section('content')
-    <h2>Selamat datang, Selamat Bekerja!</h2>
-    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ab animi ad, non explicabo rerum dolorem quos a recusandae
-        inventore quod eius laboriosam dolor eligendi impedit, iusto dolore minus, neque vitae praesentium! Ea voluptates
-        voluptate dolore possimus recusandae neque cumque nesciunt distinctio ex, officiis facilis similique sequi beatae
-        quaerat harum deserunt cupiditate culpa iure, reiciendis illum minus obcaecati. Dignissimos voluptate accusamus,
-        expedita nesciunt veritatis quisquam quasi illo totam dicta ipsa. Consequuntur voluptatibus sint dignissimos
-        mollitia at, voluptatum rerum animi ipsum, enim pariatur expedita velit odit aspernatur earum doloremque maxime
-        dicta a officia blanditiis unde tempora? Nobis libero beatae aperiam laboriosam ipsam?</p>
+    <style>
+        body {
+            background-color: #e6f7fa;
+        }
+
+        .menu-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 40px;
+            margin-top: 60px;
+            flex-wrap: wrap;
+            padding: 10px;
+        }
+
+        .menu-box {
+            background-color: white;
+            border-radius: 16px;
+            text-align: center;
+            padding: 30px 20px;
+            text-decoration: none;
+            color: #333;
+            transition: 0.3s;
+            width: 180px;
+            height: 180px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .menu-box:hover {
+            transform: scale(1.05);
+            background-color: #f0faff;
+        }
+
+        .menu-box img {
+            height: 64px;
+            margin-bottom: 12px;
+        }
+
+        .menu-box p {
+            font-size: 16px;
+            font-weight: bold;
+            margin: 0;
+        }
+
+        footer {
+            text-align: center;
+            color: #1583b5;
+            font-weight: bold;
+            margin-top: 60px;
+        }
+    </style>
+
+    <div class="menu-container">
+        <a href="{{ route('petugas.daftar_pasien') }}" class="menu-box">
+            <img src="{{ asset('images/daftar_pasien.png') }}" alt="Daftar Pasien">
+            <p>Daftar Pasien</p>
+        </a>
+
+
+        <a href="{{ route('petugas.monitor_efisiensi') }}" class="menu-box">
+            <img src="{{ asset('images/medical-record.png') }}" alt="Monitor Efisiensi"> {{-- Anda perlu menempatkan
+            gambar ini di public/images/ --}}
+            <p>Monitor Efisiensi</p>
+        </a>
+
+    </div>
+
+
 @endsection

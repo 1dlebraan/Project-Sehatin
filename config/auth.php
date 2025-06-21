@@ -40,6 +40,11 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
+        //  TAMBAHKAN GUARD 'api' UNTUK JWT
+        'api' => [
+            'driver' => 'jwt', // Menggunakan driver JWT
+            'provider' => 'users', // Menggunakan provider users yang sama
+        ],
     ],
 
     /*

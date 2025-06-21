@@ -9,23 +9,20 @@ class JadwalPoli extends Model
 {
     use HasFactory;
 
-    protected $table = 'jadwal_poli'; // Pastikan nama tabel benar jika tidak plural 'jadwal_polis'
+    protected $table = 'jadwal_poli'; // Pastikan nama tabel benar
 
-    // Kolom-kolom yang boleh diisi secara massal
+    // Pastikan SEMUA kolom yang ingin Anda perbarui ada dalam array $fillable ini.
     protected $fillable = [
         'poli_id',
-        'hari',
-        'jam_buka',
-        'jam_tutup',
-        'kuota',
-        'status', // Tambahkan 'status' jika Anda juga ingin bisa mengupdate status via update method
+        'hari', // Ini harus ada
+        'jam_buka', // Ini harus ada
+        'jam_tutup', // Ini harus ada
+        'kuota', // Ini harus ada
+        'status', // Ini juga harus ada jika status bisa diupdate via form/mass assignment
     ];
 
-    // Jika Anda menggunakan $guarded, pastikan kolom yang ingin diupdate TIDAK ada di dalamnya
-    // protected $guarded = []; // Jika kosong, semua kolom boleh diisi massal
-
     /**
-     * Get the poli that owns the JadwalPoli.
+     * Relasi dengan model Poli
      */
     public function poli()
     {

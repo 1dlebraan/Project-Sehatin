@@ -23,4 +23,10 @@ class Poli extends Model
     {
         return $this->hasMany(JadwalPoli::class);
     }
+
+    //    Relasi table User
+    public function users() // Nama relasi biasanya plural (users)
+    {
+        return $this->belongsToMany(UsersModel::class, 'poli_user', 'user_id', 'poli_id');
+    }
 }

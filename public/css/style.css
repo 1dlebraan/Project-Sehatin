@@ -1,8 +1,19 @@
+html,
 body {
     margin: 0;
     padding: 0;
-    font-family: Arial, sans-serif;
+    width: 100%;
+    height: 100%; /* Memastikan html dan body mengambil tinggi penuh viewport */
+    font-family: "Inter", Arial, sans-serif; /* Menggunakan Inter sesuai link font di layout */
     background-color: #e3f9ff;
+    box-sizing: border-box; /* Pastikan model box yang konsisten */
+}
+
+/* Menerapkan box-sizing ke semua elemen */
+*,
+*::before,
+*::after {
+    box-sizing: inherit;
 }
 
 /* Header */
@@ -52,35 +63,69 @@ body {
     transform: scale(1.1);
 }
 
-/* Menu */
+/* Konten Utama - Menu */
 .menu-container {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 50px;
-    margin-top: 100px;
-    flex-wrap: wrap;
+    gap: 30px; /* Menggunakan gap yang sama dengan dashboard.blade.php */
+    margin-top: 50px; /* Menggunakan margin-top yang sama dengan dashboard.blade.php */
+    flex-wrap: wrap; /* Pastikan wrap agar responsif di layar kecil */
+    padding: 10px; /* Tambahkan padding agar konten tidak terlalu dekat tepi */
+}
+
+/* Tambahan untuk responsivitas .menu-container agar kolomnya bertumpuk di layar kecil */
+@media (max-width: 767.98px) {
+    /* Small devices (landscape phones, 576px and down) */
+    .menu-container {
+        flex-direction: column; /* Ubah ke kolom di layar kecil */
+        gap: 20px; /* Sesuaikan gap untuk kolom */
+    }
+    .menu-box {
+        width: 100%; /* Ambil lebar penuh di layar kecil */
+        max-width: 250px; /* Batasi lebar maksimum agar tidak terlalu besar di ponsel */
+        height: auto; /* Biarkan tinggi menyesuaikan konten */
+    }
+    .brand {
+        font-size: 18px; /* Sesuaikan ukuran font brand di header */
+    }
+    .header {
+        padding: 15px 20px; /* Sesuaikan padding header di layar kecil */
+    }
 }
 
 .menu-box {
-    background-color: white;
-    padding: 30px 40px;
+    background-color: #f8f9fa; /* Sesuaikan dengan warna di dashboard.blade.php */
+    border: 1px solid #dee2e6; /* Sesuaikan dengan border di dashboard.blade.php */
+    border-radius: 10px; /* Sesuaikan dengan radius di dashboard.blade.php */
     text-align: center;
-    border-radius: 15px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease;
+    padding: 20px; /* Sesuaikan dengan padding di dashboard.blade.php */
     text-decoration: none;
     color: #333;
+    transition: 0.3s;
+    width: 200px; /* Tetapkan lebar untuk desktop */
+    height: 200px;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .menu-box:hover {
-    transform: translateY(-5px);
+    background-color: #e9ecef; /* Sesuaikan dengan hover di dashboard.blade.php */
+    transform: scale(1.03); /* Sesuaikan dengan hover di dashboard.blade.php */
+}
+
+.menu-box img {
+    height: 60px;
+    margin-bottom: 10px;
 }
 
 .menu-box p {
-    margin-top: 15px;
-    font-size: 18px;
-    color: #333;
+    font-size: 16px;
+    margin: 0;
 }
 
 /* Footer */

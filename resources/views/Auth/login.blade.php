@@ -7,6 +7,7 @@
     <title>Login Sehatin</title>
     <!-- Import font Inter dari Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter&display=swap" rel="stylesheet">
+    <link rel="icon" href="{{ asset('images/logoapp2.png') }}" type="image/png">
 
     <style>
         body {

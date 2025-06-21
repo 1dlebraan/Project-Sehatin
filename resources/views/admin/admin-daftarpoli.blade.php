@@ -10,7 +10,6 @@
             <div>
                 <button class="btn btn-outline-primary rounded-pill px-4 me-2" data-bs-toggle="modal"
                     data-bs-target="#modalTambah">Tambah Layanan</button>
-                {{-- Tombol Baru untuk Tambah Poli --}}
                 <button class="btn btn-outline-success rounded-pill px-4" data-bs-toggle="modal"
                     data-bs-target="#modalTambahPoli">Tambah Poli</button>
             </div>
@@ -78,7 +77,7 @@
         </div>
     </div>
 
-    <!-- Modal Tambah Jadwal Poli (EXISTING) -->
+    <!-- Modal Tambah Jadwal Poli -->
     <div class="modal fade" id="modalTambah" tabindex="-1" aria-labelledby="modalTambahLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -99,8 +98,23 @@
                             </select>
                         </div>
                         <div class="mb-3">
-                            <label for="hari" class="form-label">Hari</label>
-                            <input type="text" name="hari" id="hari" class="form-control" required>
+                            <label class="form-label d-block">Hari</label>
+                            @php
+                                $daysOfWeek = ['Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu', 'Minggu'];
+                            @endphp
+                            @foreach ($daysOfWeek as $day)
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="checkbox" name="hari[]" id="hari_{{ $day }}"
+                                        value="{{ $day }}">
+                                    <label class="form-check-label" for="hari_{{ $day }}">{{ $day }}</label>
+                                </div>
+                            @endforeach
+                            @error('hari')
+                                <div class="text-danger">{{ $message }}</div>
+                            @enderror
+                            @error('hari.*')
+                                <div class="text-danger">{{ $message }}</div>
+                            @enderror
                         </div>
                         <div class="mb-3">
                             <label for="jam_buka" class="form-label">Jam Buka</label>
@@ -124,7 +138,7 @@
         </div>
     </div>
 
-    <!-- Modal Tambah Poli BARU -->
+    <!-- Modal Tambah Poli BARU (tetap sama) -->
     <div class="modal fade" id="modalTambahPoli" tabindex="-1" aria-labelledby="modalTambahPoliLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -132,7 +146,7 @@
                     <h5 class="modal-title" id="modalTambahPoliLabel">Tambah Poli Baru</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <form action="{{ route('poli.store') }}" method="POST"> {{-- Route baru untuk simpan poli --}}
+                <form action="{{ route('poli.store') }}" method="POST">
                     @csrf
                     <div class="modal-body">
                         <div class="mb-3">
@@ -159,8 +173,11 @@
         <div class="modal fade" id="editModal{{ $jadwal->id }}" tabindex="-1" aria-labelledby="editModalLabel{{ $jadwal->id }}"
             aria-hidden="true">
             <div class="modal-dialog">
-                <form action="{{ route('jadwalpoli.update', $jadwal->id) }}" method="POST"> @csrf @method('PUT') <div
-                        class="modal-content">
+                <form action="{{ route('jadwalpoli.update', $jadwal->id) }}" method="POST">
+                    @csrf
+                    @method('PUT')
+                    {{-- Perbaikan dimulai dari sini: div.modal-content sekarang berada di dalam form --}}
+                    <div class="modal-content">
                         <div class="modal-header">
                             <h5 class="modal-title" id="editModalLabel{{ $jadwal->id }}">Edit Jadwal</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
@@ -178,8 +195,25 @@
                                 </select>
                             </div>
                             <div class="mb-3">
-                                <label for="hari" class="form-label">Hari</label>
-                                <input type="text" name="hari" class="form-control" value="{{ $jadwal->hari }}" required>
+                                <label class="form-label d-block">Hari</label>
+                                @php
+                                    $daysOfWeek = ['Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu', 'Minggu'];
+                                    $selectedDays = explode(',', $jadwal->hari);
+                                @endphp
+                                @foreach ($daysOfWeek as $day)
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="checkbox" name="hari[]"
+                                            id="edit_hari_{{ $jadwal->id }}_{{ $day }}" value="{{ $day }}" {{ in_array($day, $selectedDays) ? 'checked' : '' }}>
+                                        <label class="form-check-label"
+                                            for="edit_hari_{{ $jadwal->id }}_{{ $day }}">{{ $day }}</label>
+                                    </div>
+                                @endforeach
+                                @error('hari')
+                                    <div class="text-danger">{{ $message }}</div>
+                                @enderror
+                                @error('hari.*')
+                                    <div class="text-danger">{{ $message }}</div>
+                                @enderror
                             </div>
                             <div class="mb-3">
                                 <label for="jam_buka" class="form-label">Jam Buka</label>
@@ -205,7 +239,7 @@
             </div>
         </div>
 
-        <!-- Modal Hapus -->
+        <!-- Modal Hapus (tidak berubah) -->
         <div class="modal fade" id="hapusModal{{ $jadwal->id }}" tabindex="-1"
             aria-labelledby="hapusModalLabel{{ $jadwal->id }}" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered">
